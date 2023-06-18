@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\UserTypes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -25,6 +28,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'user_type_id',
         'email',
         'password',
     ];
@@ -58,4 +63,34 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected $with = [
+        'type'
+    ];
+
+    public function type(): BelongsToMany
+    {
+        return $this->belongsToMany(UserType::class);
+    }
+
+    public function scopeTypeAdmin()
+    {
+        return $this->whereHas('type', function (Builder $query) {
+            $query->where('user_type_id', UserTypes::ADMINISTRATOR);
+        });
+    }
+
+    public function scopeTypeProfessor()
+    {
+        return $this->whereHas('type', function (Builder $query) {
+            $query->where('user_type_id', UserTypes::PROFESSOR);
+        });
+    }
+
+    public function scopeTypeStudent()
+    {
+        return $this->whereHas('type', function (Builder $query) {
+            $query->where('user_type_id', UserTypes::STUDENT);
+        });
+    }
 }
