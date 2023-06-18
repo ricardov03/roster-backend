@@ -8,8 +8,8 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Tag(
- *     name="user",
- *     description="All operations related to the Users."
+ *     name="student",
+ *     description="All operations related to the Students."
  * )
  */
 
