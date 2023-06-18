@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\UserTypes;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -65,12 +64,12 @@ class User extends Authenticatable
     ];
 
     protected $with = [
-        'type'
+        'type',
     ];
 
     public function type(): BelongsToMany
     {
-        return $this->belongsToMany(UserType::class);
+        return $this->belongsToMany(UserType::class)->withTimestamps();
     }
 
     public function scopeTypeAdmin()

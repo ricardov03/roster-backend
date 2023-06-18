@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
         // "users" Table
         $this->command->newLine();
         $this->command->info("The 'users' table it's going to be seeded with all the required users.");
-        $this->command->info("Creating Administrator users...");
+        $this->command->info('Creating Administrator users...');
         $this->call(AdminUsersSeeder::class);
-        $this->command->info("Creating Teacher users...");
+        $this->command->info('Creating Teacher users...');
         $this->call(TeacherUsersSeeder::class);
-        $this->command->info("Creating Student users...");
+        $this->command->info('Creating Student users...');
         $this->call(StudentUsersSeeder::class);
         $this->command->info("The 'users' table successfully seeded.");
 

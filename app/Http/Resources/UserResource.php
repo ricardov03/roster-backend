@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'first_name' => $this->name,
             'last_name' => $this->last_name,
             'email' => $this->email,
-            'types' => UserTypeResource::collection($this->type)
+            'types' => UserTypeResource::collection($this->type),
         ];
     }
 }

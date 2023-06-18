@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\v1\Users;
 
+use App\Enums\UserTypes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 
 class StudentController extends Controller
@@ -16,7 +16,8 @@ class StudentController extends Controller
      *     tags={"student"},
      *     path="/api/v1/students",
      *     summary="List all existed Student",
-     *     description="List all existed Student Users",
+     *     description="List all existed user of type 'Student'.",
+     *
      *     @OA\Response(
      *         response="200",
      *         description="Get all existing students."
@@ -28,7 +29,6 @@ class StudentController extends Controller
         return UserResource::collection(User::typeStudent()->paginate());
     }
 
-
     /**
      * @OA\Post(
      *     tags={"student"},
@@ -36,10 +36,14 @@ class StudentController extends Controller
      *     summary="Adds a new Student",
      *     description="Adds a new user of type Student",
      *     operationId="addStudent",
+     *
      *     @OA\RequestBody(
+     *
      *         @OA\MediaType(
      *             mediaType="application/json",
+     *
      *             @OA\Schema(
+     *
      *                 @OA\Property(
      *                     property="id",
      *                     type="integer"
@@ -60,18 +64,24 @@ class StudentController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="OK",
+     *
+     *         @OA\JsonContent()
      *     )
      * )
      */
     public function store(UserRequest $student)
     {
         $newStudent = new User($student->validated());
-        if ($student?->id)
+        if ($student?->id) {
             $newStudent->id = $student->id;
+        }
         $newStudent->save();
+
+        $newStudent->type()->attach(UserTypes::STUDENT->value);
 
         return response()->json([
             'status' => 'OK',
@@ -79,27 +89,34 @@ class StudentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     tags={"student"},
+     *     path="/api/v1/students/{student_id}",
+     *     summary="Display details from a student.",
+     *     description="Display all details from the given student.",
+     *
+     *     @OA\Response(
+     *         response="200",
+     *         description="Get all existing students."
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="Student not Found."
+     *     )
+     * )
      */
-    public function show(string $id)
+    public function show(User $student)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return new UserResource($student);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $updatedStudent, User $student)
     {
-        //
+        dump($student);
+        dd($updatedStudent);
     }
 
     /**

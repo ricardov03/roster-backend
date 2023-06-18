@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use OpenApi\Annotations as OA;
 
 /**
@@ -12,6 +10,6 @@ use OpenApi\Annotations as OA;
  *     description="All operations related to the Students."
  * )
  */
-
 class OpenApiTags extends Controller
-{}
+{
+}
