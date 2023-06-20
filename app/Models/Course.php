@@ -12,6 +12,7 @@ class Course extends Model
         'created_at',
         'updated_at',
     ];
+
     protected $with = ['sections'];
 
     public function sections()

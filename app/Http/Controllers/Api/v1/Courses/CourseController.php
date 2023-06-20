@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\v1\Courses;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
-use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 
 class CourseController extends Controller

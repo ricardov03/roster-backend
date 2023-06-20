@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Roster extends Model
 {
     public $timestamps = false;
+
     protected $guarded = [];
+
     protected $with = ['student'];
 
     public function student()

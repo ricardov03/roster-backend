@@ -7,7 +7,6 @@ use App\Http\Requests\AttendanceRequest;
 use App\Http\Resources\AttendanceResource;
 use App\Models\Attendance;
 use App\Models\Section;
-use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {

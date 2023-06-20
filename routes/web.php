@@ -38,7 +38,7 @@ Route::get('/api/docs/v1', function () {
     return view('l5-swagger::index', [
         'documentation' => 'default',
         'urlToDocs' => 'http://roster-backend.test/storage/api-docs/api-docs.json',
-        'useAbsolutePath' => true
+        'useAbsolutePath' => true,
     ]);
 });
 
