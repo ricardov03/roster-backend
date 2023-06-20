@@ -14,9 +14,9 @@ class CourseSeeder extends Seeder
     {
         DB::table('courses')->insert([
             [
-                'name' => 'Privacy and Technology',
+                'name' => 'Example Course',
                 'code' => 'COMPSCI 105',
-                'description' => 'What is privacy, and how is it affected by recent developments in technology? This course critically examines popular concepts of privacy and uses a rigorous analysis of technologies to understand the policy and ethical issues at play.',
+                'description' => 'Privacy and Technology - What is privacy, and how is it affected by recent developments in technology? This course critically examines popular concepts of privacy and uses a rigorous analysis of technologies to understand the policy and ethical issues at play.',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

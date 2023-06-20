@@ -33,7 +33,7 @@ class SectionController extends Controller
      * @OA\Get(
      *     tags={"Sections"},
      *     path="/api/v1/sections/{section_id}",
-     *     summary="Display a section detais",
+     *     summary="Display a section details",
      *     description="Display all details from the given section.",
      *     operationId="showSection",
      *

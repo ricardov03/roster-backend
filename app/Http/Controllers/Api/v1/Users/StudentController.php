@@ -91,7 +91,7 @@ class StudentController extends Controller
      * @OA\Get(
      *     tags={"Students"},
      *     path="/api/v1/students/{student_id}",
-     *     summary="Display a student detais",
+     *     summary="Display a student details",
      *     description="Display all details from the given student.",
      *     operationId="showStudent",
      *

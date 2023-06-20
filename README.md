@@ -7,60 +7,104 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Code Challenge Zipdev + Stanbridge
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Backend API required to solve the Code Challenge defined by Zipdev + Stanbridge. This documentation includes all the
+existing methods for the Application.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## The Problem
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+For a single course titled “Example Course,” display a roster of students to an instructor allowing the instructor to
+record each student as present or absent.
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [x] Backend Laravel
+- [x] Backend must persist present/absent status in a MySQL database
+- [x] Write at least one feature or unit test in PHPUnit
+- [ ] ~~NOT Over-engineering (keep it simple)~~ (I'm pretending to finish this challenge as a product).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+> **Note:** Apologize for the delay in response to this challenge. As I explained, I participated in an event that
+> doesn't allow me to work on anything else during the closing week.
+> Please consider that I built the delivered version in just one day and a few hours (Git Commits as a probe of
+> honesty).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## The Recommended (and Builded...) Solution
 
-## Laravel Sponsors
+Build an Attendance platform that allows system users to handle the following:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### DB Schema
 
-### Premium Partners
+![DB Schema]("images/db-schema.png")
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### For Admin Users:
 
-## Contributing
+- User Administration
+- Course Administration
+- Section Administration
+    - Roster Administration
+    - Attendance Administration
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### For Professor Users:
 
-## Code of Conduct
+- Section Attendance
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### For Student Users:
 
-## Security Vulnerabilities
+- Attendance Status
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Scope of the Solution
 
-## License
+Because of the short time, we cover a few points of the Recommended Solution. The current project delivers the following
+API endpoints:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Courses
+    - List all existing Courses.
+    - Display course details.
+- Sections
+    - List all existing Sections.
+    - Display section details.
+- Attendance
+    - Display all Attendance from a Section.
+    - Add a new Attendance List.
+- Absences
+    - Add a new Absence to an Attendances List.
+- Students
+    - List all existing Students.
+    - Add a new Student.
+    - Display student details.
+    - Edit an existing Student.
+    - Delete an existing Student.
+
+## How to use this repository?
+
+- [ ] Clone the project.
+  ```git clone https://github.com/ricardov03/roster-backend.git```
+- [ ] Configure the Database. You can copy the .env.example.
+- [ ] Migrate the Database. ```php artisan migrate:fresh --seed```
+- [ ] Execute `php artisan l5-swagger:generate` to generate the Swagger documentation.
+    - [ ] Visit the API Swagger documentation: `[base_url]/api/docs/v1`
+- [ ] Extra: Import the API list to Postman or your favorite tool by using the following
+  path: `[base_url]/storage/api-docs/api-docs.json`
+
+Enjoy!
+
+## Witch Laravel functions has been covered?
+
+- Controllers
+- Request
+- Resources
+- Models
+- Policy (Not Implemented - Auth required.)
+- Migrations
+- Seeders
+- Test
+
+There's a single case of Enum used during the project development.
+
+### Others Plus
+
+- The current README documentation.
+- Swagger Implementation.
+- Use of Laravel Pint during the project for Code Formatting.
+- Jetstream it's installed but not intended to use for the Challenge.

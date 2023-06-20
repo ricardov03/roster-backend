@@ -12,8 +12,8 @@ class AbsencesController extends Controller
      * @OA\Post(
      *     tags={"Absences"},
      *     path="/api/v1/attendances/{attendance_id}/absences",
-     *     summary="Add a new Absences to an Atttendances List",
-     *     description="Add a new Absences to an Atttendances List.",
+     *     summary="Add a new Absences to an Attendances List",
+     *     description="Add a new Absences to an Attendances List.",
      *     operationId="addAbsence",
      *
      *     @OA\Parameter(

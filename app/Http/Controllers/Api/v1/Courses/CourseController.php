@@ -32,7 +32,7 @@ class CourseController extends Controller
      * @OA\Get(
      *     tags={"Courses"},
      *     path="/api/v1/courses/{course_id}",
-     *     summary="Display a course detais",
+     *     summary="Display a course details",
      *     description="Display all details from the given course.",
      *     operationId="showCourse",
      *

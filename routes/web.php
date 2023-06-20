@@ -42,6 +42,3 @@ Route::get('/api/docs/v1', function () {
     ]);
 });
 
-Route::get('test', function () {
-    return \App\Models\User::typeStudent()->select('id')->without(['type'])->get();
-});
