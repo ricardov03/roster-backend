@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\v1\Users\StudentController;
+use App\Http\Controllers\api\v1\Users\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
