@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\Sections\SectionController;
 use App\Http\Controllers\api\v1\Users\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::resource('students', StudentController::class)->except('create', 'edit');
+    Route::resource('sections', SectionController::class)->only('index');
 });
