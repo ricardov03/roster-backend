@@ -52,5 +52,10 @@ class DatabaseSeeder extends Seeder
         $this->command->info("The 'attendance' table it's going to be seeded with all the attendances.");
         $this->call(AttendanceSeeder::class);
         $this->command->info("The 'attendance' table successfully seeded.");
+
+        // "absences" Table
+        $this->command->info("The 'absences' table it's going to be seeded with all the existed absences.");
+        $this->call(AbsenceSeeder::class);
+        $this->command->info("The 'absences' table successfully seeded.");
     }
 }
