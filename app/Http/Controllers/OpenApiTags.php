@@ -6,6 +6,10 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Tag(
+ *     name="Courses",
+ *     description="All operations related to the Courses."
+ * ),
+ * @OA\Tag(
  *     name="Sections",
  *     description="All operations related to the Sections."
  * ),
