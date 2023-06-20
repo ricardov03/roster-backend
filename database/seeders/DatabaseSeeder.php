@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // "user_types" Table
-        $this->command->info("The 'user_types' table it's going to be seeded with all the required users.");
+        $this->command->info("The 'user_types' table it's going to be seeded with all the required user types.");
         $this->call(UserTypeSeeder::class);
         $this->command->info("The 'user_types' table successfully seeded.");
 
@@ -29,18 +29,23 @@ class DatabaseSeeder extends Seeder
         $this->command->info("The 'users' table successfully seeded.");
 
         // "user_user_type" Table
-        $this->command->info("The 'user_user_type' table it's going to be seeded with all the required user types.");
+        $this->command->info("The 'user_user_type' table it's going to be seeded with all the required user and user types relations.");
         $this->call(UserUserTypeRelationSeeder::class);
         $this->command->info("The 'user_user_type' table successfully seeded.");
 
         // "courses" Table
-        $this->command->info("The 'courses' table it's going to be seeded with all the required courses.");
+        $this->command->info("The 'courses' table it's going to be seeded with all the existed courses.");
         $this->call(CourseSeeder::class);
         $this->command->info("The 'courses' table successfully seeded.");
 
         // "sections" Table
-        $this->command->info("The 'sections' table it's going to be seeded with all the required sections.");
+        $this->command->info("The 'sections' table it's going to be seeded with all the required sections and instructor relations.");
         $this->call(SectionSeeder::class);
         $this->command->info("The 'sections' table successfully seeded.");
+
+        // "roster" Table
+        $this->command->info("The 'rosters' table it's going to be seeded with all the required rosters.");
+        $this->call(SectionSeeder::class);
+        $this->command->info("The 'rosters' table successfully seeded.");
     }
 }
