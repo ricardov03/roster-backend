@@ -19,7 +19,7 @@ class DetailedSectionResource extends JsonResource
             'name' => $this->name,
             'course' => $this?->course?->name,
             'instructor' => $this?->instructor?->name . ' ' . $this?->instructor?->last_name,
-            'roster' => $this->students,
+            'roster' => StudentResource::collection($this->students),
         ];
     }
 }

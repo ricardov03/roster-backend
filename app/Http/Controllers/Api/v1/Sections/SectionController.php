@@ -62,7 +62,6 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        ray()->showQueries();
         return new DetailedSectionResource($section);
     }
 }
