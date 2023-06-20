@@ -6,7 +6,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Tag(
- *     name="student",
+ *     name="Students",
  *     description="All operations related to the Students."
  * )
  */
