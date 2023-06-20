@@ -39,13 +39,18 @@ class DatabaseSeeder extends Seeder
         $this->command->info("The 'courses' table successfully seeded.");
 
         // "sections" Table
-        $this->command->info("The 'sections' table it's going to be seeded with all the required sections and instructor relations.");
+        $this->command->info("The 'sections' table it's going to be seeded with all the required course and instructor relations.");
         $this->call(SectionSeeder::class);
         $this->command->info("The 'sections' table successfully seeded.");
 
         // "roster" Table
-        $this->command->info("The 'rosters' table it's going to be seeded with all the required rosters.");
-        $this->call(SectionSeeder::class);
+        $this->command->info("The 'rosters' table it's going to be seeded with all the required sections and students relations.");
+        $this->call(RosterSeeder::class);
         $this->command->info("The 'rosters' table successfully seeded.");
+
+        // "attendance" Table
+        $this->command->info("The 'attendance' table it's going to be seeded with all the attendances.");
+        $this->call(AttendanceSeeder::class);
+        $this->command->info("The 'attendance' table successfully seeded.");
     }
 }
