@@ -32,5 +32,10 @@ class DatabaseSeeder extends Seeder
         $this->command->info("The 'user_user_type' table it's going to be seeded with all the required users.");
         $this->call(UserUserTypeRelationSeeder::class);
         $this->command->info("The 'user_user_type' table successfully seeded.");
+
+        // "courses" Table
+        $this->command->info("The 'courses' table it's going to be seeded with all the required users.");
+        $this->call(CourseSeeder::class);
+        $this->command->info("The 'courses' table successfully seeded.");
     }
 }
