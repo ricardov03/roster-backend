@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\Courses\CourseController;
+use App\Http\Controllers\Api\v1\Sections\AttendanceController;
 use App\Http\Controllers\Api\v1\Sections\SectionController;
 use App\Http\Controllers\api\v1\Users\StudentController;
 use Illuminate\Http\Request;
@@ -24,5 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::resource('courses', CourseController::class)->only('index', 'show');
     Route::resource('sections', SectionController::class)->only('index', 'show');
+    Route::resource('sections.attendance', AttendanceController::class)->only('index');
     Route::resource('students', StudentController::class)->except('create', 'edit');
 });

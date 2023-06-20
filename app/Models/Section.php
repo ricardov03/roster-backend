@@ -23,4 +23,9 @@ class Section extends Model
     {
         return $this->hasMany(Roster::class, 'section_id', 'id');
     }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'section_id', 'id');
+    }
 }

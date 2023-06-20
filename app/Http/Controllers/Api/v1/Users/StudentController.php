@@ -17,6 +17,7 @@ class StudentController extends Controller
      *     path="/api/v1/students",
      *     summary="List all existing Students",
      *     description="List all existing Students.",
+     *     operationId="listStudents",
      *
      *     @OA\Response(
      *         response="200",

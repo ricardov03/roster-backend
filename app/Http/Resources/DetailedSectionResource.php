@@ -14,12 +14,16 @@ class DetailedSectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $students = $this->students->pluck('student');
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'course' => $this?->course?->name,
             'instructor' => $this?->instructor?->name . ' ' . $this?->instructor?->last_name,
-            'roster' => StudentResource::collection($this->students),
+            'attendance_lists' => $this->attendances->count(),
+            'roster_size' => $this->students->count(),
+            'roster' => StudentResource::collection($students),
         ];
     }
 }
