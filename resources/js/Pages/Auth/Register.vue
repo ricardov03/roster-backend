@@ -43,11 +43,25 @@ const submit = () => {
                     autofocus
                     autocomplete="name"
                 />
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError class="mt-2" :message="form.errors.name"/>
+            </div>
+
+            <div>
+                <InputLabel for="last_name" value="Last Name"/>
+                <TextInput
+                    id="last_name"
+                    v-model="form.name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autofocus
+                    autocomplete="last_name"
+                />
+                <InputError class="mt-2" :message="form.errors.last_name"/>
             </div>
 
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email"/>
                 <TextInput
                     id="email"
                     v-model="form.email"
