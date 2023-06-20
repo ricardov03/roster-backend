@@ -22,11 +22,11 @@ it('can retrieve the courses list', function () {
                             'id',
                             'name',
                             'course',
-                            'instructor'
-                        ]
-                    ]
-                ]
-            ]
+                            'instructor',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 });
 it('can retrieve a single course with their details')->skip();

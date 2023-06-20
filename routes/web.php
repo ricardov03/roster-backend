@@ -41,4 +41,3 @@ Route::get('/api/docs/v1', function () {
         'useAbsolutePath' => true,
     ]);
 });
-
