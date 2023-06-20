@@ -25,6 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::resource('courses', CourseController::class)->only('index', 'show');
     Route::resource('sections', SectionController::class)->only('index', 'show');
-    Route::resource('sections.attendances', AttendanceController::class)->only('index');
+    Route::resource('sections.attendances', AttendanceController::class)->only('index', 'store');
     Route::resource('students', StudentController::class)->except('create', 'edit');
 });

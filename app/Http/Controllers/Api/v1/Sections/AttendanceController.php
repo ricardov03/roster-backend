@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Sections;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AttendanceRequest;
 use App\Http\Resources\AttendanceResource;
 use App\Models\Attendance;
 use App\Models\Section;
@@ -12,8 +13,8 @@ class AttendanceController extends Controller
 {
     /**
      * @OA\Get(
-     *     tags={"Sections"},
-     *     path="/api/v1/sections/{section_id}/attendance",
+     *     tags={"Attendance"},
+     *     path="/api/v1/sections/{section_id}/attendances",
      *     summary="Display all attendances from a section",
      *     description="Display all attendances from the given section.",
      *     operationId="showAttendances",
@@ -43,5 +44,67 @@ class AttendanceController extends Controller
     public function index(Section $section)
     {
         return AttendanceResource::collection($section->attendances);
+    }
+
+    /**
+     * @OA\Post(
+     *     tags={"Attendance"},
+     *     path="/api/v1/sections/{section_id}/attendances",
+     *     summary="Add a new Attendance List",
+     *     description="Add a new Attendance List.",
+     *     operationId="addAttendance",
+     *
+     *     @OA\Parameter(
+     *         description="ID of the Section",
+     *         in="path",
+     *         name="section_id",
+     *         required=true,
+     *
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *
+     *     @OA\RequestBody(
+     *
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *
+     *             @OA\Schema(
+     *
+     *                 @OA\Property(
+     *                     property="section_id",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="date",
+     *                     type="string"
+     *                 ),
+     *                 example={"date": "2023-06-03"}
+     *             )
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     )
+     * )
+     */
+    public function store(Section $section, AttendanceRequest $attendance)
+    {
+        $checkIfAttendanceExists = $section->attendances()->whereDate('date', $attendance->date);
+
+        if (!$checkIfAttendanceExists->exists()) {
+            $section->attendances()->save(new Attendance([
+                'date' => $attendance->date,
+            ]));
+
+        }
+
+        return response()->json([
+            'status' => 'OK',
+        ], 200);
     }
 }
