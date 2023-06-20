@@ -18,4 +18,9 @@ class Section extends Model
     {
         return $this->belongsTo(User::class, 'instructor_id', 'id');
     }
+
+    public function students()
+    {
+        return $this->hasMany(Roster::class, 'section_id', 'id');
+    }
 }
