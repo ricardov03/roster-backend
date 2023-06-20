@@ -8,7 +8,6 @@ use App\Models\Attendance;
 
 class AbsencesController extends Controller
 {
-
     /**
      * @OA\Post(
      *     tags={"Absences"},
