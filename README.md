@@ -35,7 +35,7 @@ Build an Attendance platform that allows system users to handle the following:
 
 ### DB Schema
 
-![DB Schema]("images/db-schema.png")
+![DB Schema](images/db-schema.png)
 
 #### For Admin Users:
 
