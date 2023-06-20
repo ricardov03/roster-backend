@@ -17,6 +17,6 @@ class Attendance extends Model
 
     public function absences()
     {
-        return $this->hasMany(Absence::class);
+        return $this->belongsToMany(Roster::class, 'absences', 'attendance_id', 'roster_id', 'id', 'id');
     }
 }

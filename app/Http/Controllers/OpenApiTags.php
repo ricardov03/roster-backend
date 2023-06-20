@@ -18,6 +18,10 @@ use OpenApi\Annotations as OA;
  *     description="All operations related to the Attendances."
  * ),
  * @OA\Tag(
+ *     name="Absences",
+ *     description="All operations related to the Absences."
+ * ),
+ * @OA\Tag(
  *     name="Students",
  *     description="All operations related to the Students."
  * )

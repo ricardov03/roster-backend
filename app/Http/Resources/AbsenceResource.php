@@ -15,7 +15,7 @@ class AbsenceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'roster' => new ShortStudentResource($this->roster->student),
+            'roster' => new ShortStudentResource($this->student),
         ];
     }
 }

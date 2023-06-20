@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\Courses\CourseController;
+use App\Http\Controllers\Api\v1\Sections\AbsencesController;
 use App\Http\Controllers\Api\v1\Sections\AttendanceController;
 use App\Http\Controllers\Api\v1\Sections\SectionController;
 use App\Http\Controllers\api\v1\Users\StudentController;
@@ -27,4 +28,5 @@ Route::prefix('v1')->group(function () {
     Route::resource('sections', SectionController::class)->only('index', 'show');
     Route::resource('sections.attendances', AttendanceController::class)->only('index', 'store');
     Route::resource('students', StudentController::class)->except('create', 'edit');
+    Route::resource('attendances.absences', AbsencesController::class)->only('store');
 });
