@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -25,7 +26,11 @@ class UserRequest extends FormRequest
             'id' => 'sometimes|numeric|unique:users,id',
             'name' => 'required|string',
             'last_name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(request()->route()?->student?->id),
+            ],
             'email_verified_at' => 'nullable|date',
             'password' => 'nullable|string',
             'two_factor_secret' => 'nullable|string',

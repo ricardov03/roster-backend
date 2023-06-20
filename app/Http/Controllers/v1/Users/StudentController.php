@@ -13,10 +13,10 @@ class StudentController extends Controller
 {
     /**
      * @OA\Get(
-     *     tags={"student"},
+     *     tags={"Students"},
      *     path="/api/v1/students",
-     *     summary="List all existed Student",
-     *     description="List all existed user of type 'Student'.",
+     *     summary="List all existing Students",
+     *     description="List all existing Students.",
      *
      *     @OA\Response(
      *         response="200",
@@ -31,10 +31,10 @@ class StudentController extends Controller
 
     /**
      * @OA\Post(
-     *     tags={"student"},
+     *     tags={"Students"},
      *     path="/api/v1/students",
-     *     summary="Adds a new Student",
-     *     description="Adds a new user of type Student",
+     *     summary="Add a new Student",
+     *     description="Add a new user of type Student.",
      *     operationId="addStudent",
      *
      *     @OA\RequestBody(
@@ -60,16 +60,14 @@ class StudentController extends Controller
      *                     property="email",
      *                     type="string"
      *                 ),
-     *                 example={"id": 432341234, "name": "Marco", "last_name": "Polo", "email": "ricardov@gmail.com"}
+     *                 example={"id": 432341234, "name": "Marco", "last_name": "Polo", "email": "marco@polo.com"}
      *             )
      *         )
      *     ),
      *
      *     @OA\Response(
      *         response=200,
-     *         description="OK",
-     *
-     *         @OA\JsonContent()
+     *         description="OK"
      *     )
      * )
      */
@@ -90,10 +88,23 @@ class StudentController extends Controller
 
     /**
      * @OA\Get(
-     *     tags={"student"},
+     *     tags={"Students"},
      *     path="/api/v1/students/{student_id}",
-     *     summary="Display details from a student.",
+     *     summary="Display a student detais",
      *     description="Display all details from the given student.",
+     *     operationId="showStudent",
+     *
+     *     @OA\Parameter(
+     *         description="ID of the Student",
+     *         in="path",
+     *         name="student_id",
+     *         required=true,
+     *
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
      *
      *     @OA\Response(
      *         response="200",
@@ -111,19 +122,111 @@ class StudentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     tags={"Students"},
+     *     path="/api/v1/students/{student_id}",
+     *     summary="Edit an existed Student",
+     *     description="Update an Student information.",
+     *     operationId="updateStudent",
+     *
+     *     @OA\Parameter(
+     *         description="ID of the Student",
+     *         in="path",
+     *         name="student_id",
+     *         required=true,
+     *
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *
+     *     @OA\RequestBody(
+     *
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *
+     *             @OA\Schema(
+     *
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="last_name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "Maria", "last_name": "Vicente", "email": "mvicente@gmail.com"}
+     *             )
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="Student not Found."
+     *     )
+     * )
      */
     public function update(UserRequest $updatedStudent, User $student)
     {
-        dump($student);
-        dd($updatedStudent);
+        $student->update($updatedStudent->validated());
+        $student->save();
+
+        return response()->json([
+            'status' => 'OK',
+        ], 200);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     tags={"Students"},
+     *     path="/api/v1/students/{student_id}",
+     *     summary="Delete an existed Student",
+     *     description="Delete the given student.",
+     *     operationId="deleteStudent",
+     *
+     *     @OA\Parameter(
+     *         description="ID of the Student",
+     *         in="path",
+     *         name="student_id",
+     *         required=true,
+     *
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response="200",
+     *         description="Get all existing students."
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Not authorized."
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="Student not Found."
+     *     )
+     * )
      */
-    public function destroy(string $id)
+    public function destroy(User $student)
     {
-        //
+        // TODO: Implement authentication. if (request()->user()->can('delete', $student)) {}
+        $student->delete();
+
+        return response()->json([
+            'status' => 'OK',
+            'message' => 'The Student has been deleted.',
+        ], 200);
     }
 }

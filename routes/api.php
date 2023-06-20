@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::resource('students', StudentController::class)->except('create');
+    Route::resource('students', StudentController::class)->except('create', 'edit');
 });
