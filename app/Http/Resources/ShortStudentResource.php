@@ -16,7 +16,7 @@ class ShortStudentResource extends JsonResource
     {
         return [
             'student_id' => $this->id,
-            'full_name' => $this->name . ' ' . $this->last_name,
+            'full_name' => $this->name.' '.$this->last_name,
         ];
     }
 }

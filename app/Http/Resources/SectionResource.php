@@ -18,7 +18,7 @@ class SectionResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'course' => $this?->course?->name,
-            'instructor' => $this?->instructor?->name . ' ' . $this?->instructor?->last_name,
+            'instructor' => $this?->instructor?->name.' '.$this?->instructor?->last_name,
         ];
     }
 }

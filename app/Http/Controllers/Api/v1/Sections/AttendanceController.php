@@ -95,7 +95,7 @@ class AttendanceController extends Controller
     {
         $checkIfAttendanceExists = $section->attendances()->whereDate('date', $attendance->date);
 
-        if (!$checkIfAttendanceExists->exists()) {
+        if (! $checkIfAttendanceExists->exists()) {
             $section->attendances()->save(new Attendance([
                 'date' => $attendance->date,
             ]));
