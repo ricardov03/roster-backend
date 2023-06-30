@@ -10,12 +10,10 @@ class AbsenceResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @return array<string, mixed>
+     * @return ShortStudentResource
      */
-    public function toArray(Request $request): array
+    public function toArray(Request $request): ShortStudentResource
     {
-        return [
-            'roster' => new ShortStudentResource($this->student),
-        ];
+        return new ShortStudentResource($this->student);
     }
 }
