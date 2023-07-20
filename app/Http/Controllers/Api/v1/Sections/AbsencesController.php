@@ -50,9 +50,13 @@ class AbsencesController extends Controller
      *     )
      * )
      */
-    public function store(Attendance $attendance, AbsenceRequest $absence)
+    public function store(Attendance $attendance, AbsenceRequest $request)
     {
-        $attendance->absences()->toggle($absence->roster_id);
+        $absences = collect($request->absences)
+            ->filter(fn(bool $value, int $key) => $value === true)
+            ->keys()
+            ->toArray();
+        $attendance->absences()->toggle($absences);
 
         return response()->json([
             'status' => 'OK',

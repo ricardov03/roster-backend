@@ -22,7 +22,7 @@ class AbsenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'roster_id' => 'required|exists:rosters,id',
+            'absences' => 'nullable|array',
         ];
     }
 }

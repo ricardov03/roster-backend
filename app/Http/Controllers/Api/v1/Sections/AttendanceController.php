@@ -7,6 +7,7 @@ use App\Http\Requests\AttendanceRequest;
 use App\Http\Resources\AttendanceResource;
 use App\Models\Attendance;
 use App\Models\Section;
+use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
@@ -93,17 +94,21 @@ class AttendanceController extends Controller
      */
     public function store(Section $section, AttendanceRequest $attendance)
     {
-        $checkIfAttendanceExists = $section->attendances()->whereDate('date', $attendance->date);
+        $newAttendance = Carbon::create($attendance->date)->toDate();
+        $checkIfAttendanceExists = $section->attendances()->whereDate('date', $newAttendance);
 
-        if (! $checkIfAttendanceExists->exists()) {
-            $section->attendances()->save(new Attendance([
-                'date' => $attendance->date,
+        if (!$checkIfAttendanceExists->exists()) {
+            $newAttendance = $section->attendances()->save(new Attendance([
+                'date' => $newAttendance,
             ]));
 
         }
 
         return response()->json([
             'status' => 'OK',
+            'attendance' => [
+                'last_id' => $newAttendance->getKey()
+            ]
         ], 200);
     }
 }
