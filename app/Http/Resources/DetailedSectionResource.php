@@ -14,7 +14,7 @@ class DetailedSectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $students = $this->students->pluck('student');
+        $students = $this->students->pluck('student', 'id');
 
         return [
             'id' => $this->id,
